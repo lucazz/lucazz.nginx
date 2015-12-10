@@ -1,0 +1,9 @@
+---
+- name: Installing nginx
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+    - nginx
+    - nginx-common
+    - nginx-extras
+  notify:
+    - start nginx

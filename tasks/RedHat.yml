@@ -1,0 +1,19 @@
+---
+- name: Installing nginx repo (Centos 6)
+  yum: name={{ item }} state=present
+  when: ansible_distribution_major_version == "6"
+  with_items:
+    - http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+
+- name: Installing nginx repo (Centos 7)
+  yum: name={{ item }} state=present
+  when: ansible_distribution_major_version == "7"
+  with_items:
+    - http://nginx.org/packages/rhel/7/noarch/RPMS/nginx-release-rhel-7-0.el7.ngx.noarch.rpm
+
+- name: Installing nginx
+  yum: name={{ item }} state=present
+  with_items:
+    - nginx
+  notify:
+    - start nginx

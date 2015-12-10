@@ -1,0 +1,9 @@
+---
+# tasks file for intuitive.base
+# Include variables and define needed variables.
+# Setup/install tasks.
+- include: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: Debian.yml
+  when: ansible_os_family == 'Debian'
